@@ -84,6 +84,7 @@ def main(config):
   _use_english_subcommands()
   _use_unicode()
   _set_process_name()
+  _set_escdelay_to_zero()
 
   try:
     nyx.curses.start(nyx.controller.start_nyx, transparent_background = True, cursor = False)
@@ -249,6 +250,14 @@ def _set_process_name():
 
   stem.util.system.set_process_name('nyx\0%s' % '\0'.join(sys.argv[1:]))
 
+
+def _set_escdelay_to_zero():
+  """
+  Set ESCDELAY to 0 so curses won't wait before delivering the special
+  character after it has been pressed
+  """
+
+  os.environ.setdefault('ESCDELAY', '0')
 
 def _shutdown_daemons(controller):
   """

@@ -2,3 +2,6 @@
 src/stem/
 *.swp
 
+geany.sh
+.config
+.cache
